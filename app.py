@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, render_template
+from flask import Flask, redirect, url_for, render_template, request
 
 app = Flask(__name__)
 '''
@@ -35,10 +35,41 @@ def html():
     return render_template("index.html", name="name") # When in the rout it will load the html, passing in the variable name in the html file
 # Look at index html and find {{name}} it is pass there
 
+@app.route("/1")
+def one():
+    return render_template("1.html", variable=3) # redirecting to the page called 1.html
+
+"""
+This will be Template Inheritance
+"""
+@app.route("/2")
+def two():
+    return render_template("new.html") # Go to this fiel and bas.html to learn it=
+
+"""
+This is HTTP methods
+The get method is  send information  to the website (not secure)
+The Post method secure the get method
+
+Goging to dispaly information to another page 
+"""
+@app.route("/login", methods=["POST", "GET"])# This means that the page could use these method in Flask when you open /login page
+def login(): # Please import the request to check if the user is posting information or asking for html
+    if request.method == "POST":
+        user = request.form["nm"] # Go and read the login.html and there is something that is define as name="nm" after user post it to you will have it uder the user thing
+        return redirect(url_for("loged", usr=user))
+    else:
+        return render_template("login.html")
+
+
+@app.route("/<usr>")
+def loged(usr):
+    print(usr)
+    return "<h1>" + usr + "</h1>"
 
 
 
 
 
 if __name__ == '__main__':
-    app.run()# Running the function
+    app.run()# Running the app
