@@ -67,9 +67,20 @@ def loged(usr):
     print(usr)
     return "<h1>" + usr + "</h1>"
 
+"""
+This is session mate
+Tutorial: https://www.youtube.com/watch?v=iIhAfX4iek0&t=44s
+"""
+@app.route("/hi", methods=["GET", "POST"])
+def logging_in():
+    if request.method == "POST":
+        user = request.form['nm']
+        return  redirect(url_for("logedd", user=user))
+    else:
+        return render_template("login.html")
 
-
-
-
+@app.route("/<user>")
+def logedd(user):
+    return f"What the fuck mate: {user}"
 if __name__ == '__main__':
     app.run()# Running the app
