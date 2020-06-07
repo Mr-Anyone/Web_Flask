@@ -3,8 +3,11 @@
 
 {% block paragraph %}
     <form action="#" method="POST"> <!-- Send information is usally going to use form and use the method post to get information to python code. Action means url redirect # means still on the same page -->
-        <p> What is your name</p>
-        <p><input type="name" name="nm"></p><!-- This is for the input text tag with the input being name="nm"-->
-        <p><input type="submit" value="Submit"></p> <!-- vaule is for the sumbit button text -->
+
+        <p> User Name And Password</p>
+        <p><input type="user" name="user", value="User Name"></p>
+        <p><input type="name" name="Password", value="Password"></p><!-- This is for the input text tag with the input being name="nm"-->
+        <p><input type="submit" value="Login"></p> <!-- vaule is for the sumbit button text -->
+
     </form>
 {% endblock %}
